@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
 
@@ -27,14 +28,14 @@ import java.util.Map;
 @RequestMapping("/cars")
 @Validated
 @Slf4j
-@AllArgsConstructor
+
 public class CarController {
 
     private static final String USER_ID_HEADER = "X-Sharer-User-Id";
 
     private static final String CAR_ID_FIELD_NAME = "id";
-
-    private final CarService carService;
+    @Autowired
+    private CarService carService;
 
 
     @GetMapping("/{carId}")
@@ -43,29 +44,23 @@ public class CarController {
         return carService.getCarById(carId);
     }
 
-//    @GetMapping("/{carId}")
-//    public CarDto getCar(@PathVariable long carId) {
-//        log.info("request received GET /cars/id");
-//        return carService.getCar(carId);
-//    }
-//
-//    @PostMapping
-//    public CarDto addCar(@RequestBody @Valid CarDto car) {
-//        log.info("request received POST /cars");
-//        return carService.createCar(car);
-//    }
-//
-//    @DeleteMapping("/{carId}")
-//    public CarDto deleteCar(@PathVariable long carId) {
-//        log.info("request received DELETE /cars");
-//        return carService.deleteCar(carId);
-//    }
-//
-//    @PatchMapping("/{carId}")
-//    public CarDto updateCar(@RequestBody @Valid @PathVariable long carId) {
-//        log.info("request received PATCH /cars/id");
-//        return carService.updateCar(carId);
-//    }
+    @PostMapping
+    public CarDto addCar(@RequestBody @Valid CarDto car) {
+        log.info("request received POST /cars");
+        return carService.createCar(car);
+    }
+
+    @DeleteMapping("/{carId}")
+    public CarDto deleteCar(@PathVariable Long carId) {
+        log.info("request received DELETE /cars");
+        return carService.deleteCar(carId);
+    }
+
+    @PatchMapping("/{carId}")
+    public CarDto updateCar(@Valid @PathVariable Long carId, @RequestBody CarDto newCar) {
+        log.info("request received PATCH /cars/id");
+        return carService.updateCar(carId, newCar);
+    }
 //
 //    @GetMapping("/search")
 //    public List<CarDto> search(@RequestParam(required = false) @PositiveOrZero Integer from,

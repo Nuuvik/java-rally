@@ -1,8 +1,6 @@
-
-       INSERT INTO cars
-           (model, groups)
-       VALUES ('LADA', 'R1'),
-              ('Subaru', 'R4'),
-              ('Skoda', 'R3'),
-              ('VAZ', 'R1'),
-              ('Ford', 'R3');
+INSERT INTO cars (model, groups)
+       VALUES ('LADA', 'CLASSIC'),
+              ('Subaru', 'NOT_CLASSIC'),
+              ('Skoda', 'NOT_CLASSIC'),
+              ('VAZ', 'CLASSIC'),
+              ('Ford', 'NOT_CLASSIC');

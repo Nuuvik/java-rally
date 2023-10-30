@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +33,9 @@ public class Car {
     @Column(nullable = false)
     private String model;
 
-    @Column(nullable = false)
-    private String groups; //TODO create table db of group and switch types
+    @Column(nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
+    private Group groups;
 
 
 

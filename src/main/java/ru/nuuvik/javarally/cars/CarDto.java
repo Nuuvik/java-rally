@@ -18,7 +18,7 @@ public class CarDto {
     private String model;
 
     @NotNull(groups = {Create.class})
-    private String groups; //TODO create table db of group and switch types
+    private Group groups; //TODO изменить дто при необходимости
 
 
 }
